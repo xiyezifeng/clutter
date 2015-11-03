@@ -1,4 +1,4 @@
-package com.xiye.util;
+package com.xiye.imageloader;
 
 public class ImageSize {
 		public ImageSize() {

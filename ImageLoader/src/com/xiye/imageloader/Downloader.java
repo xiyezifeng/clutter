@@ -1,4 +1,4 @@
-package com.xiye.util;
+package com.xiye.imageloader;
 
 import java.io.BufferedInputStream;
 import java.io.File;

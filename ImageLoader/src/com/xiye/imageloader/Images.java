@@ -1,4 +1,7 @@
-package com.xiye.util;
+package com.xiye.imageloader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author xiye
@@ -6,6 +9,9 @@ package com.xiye.util;
  * @version 1
  */ 
 public class Images {
+	
+	public static List<String> baidulist = new ArrayList<String>();
+	
 	public static final String [] images = {
 		"http://b327.photo.store.qq.com/psb?/V10zTAJc2fYlfq/6Gbx3UedZ.QIP4b4K2cdj8EHGamr1EIMZPuFjjUtIiw!/b/dNmS98InKgAA&bo=WAIgA7AEQAYBCqY!&rf=viewer_4",
 		"http://b328.photo.store.qq.com/psb?/V10zTAJc2fYlfq/bJ6HWklKZkW76N0bn4a8tPe.Gyk2h08VfuOdBPVipdE!/b/dNeUi8PJJQAA&bo=WAIgA7AEQAYBAKw!&rf=viewer_4",

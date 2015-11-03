@@ -1,8 +1,8 @@
-package com.xiye.imageloader;
+package com.xiye.main;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.xiye.util.ImageBeanHolder;
-import com.xiye.util.ImageLoader;
-import com.xiye.util.Images;
-import com.xiye.util.LoadType;
+import com.xiye.imageloader.ImageBeanHolder;
+import com.xiye.imageloader.ImageLoader;
+import com.xiye.imageloader.Images;
+import com.xiye.imageloader.LoadType;
+import com.xiye.imageloader.R;
 
 public class DemoFragment extends Fragment{
 	

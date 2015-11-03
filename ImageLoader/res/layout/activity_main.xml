@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xiye.imageloader.MainActivity" >
+    tools:context="com.xiye.main.MainActivity" >
 
-        <fragment
-            android:id="@+id/demofragment"
-            android:name="com.xiye.imageloader.DemoFragment"
-            android:layout_width="fill_parent" 
-            android:layout_height="fill_parent"
-            />
+        <com.xiye.custom.ViewPagerCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/viewpage"
+            >
+        </com.xiye.custom.ViewPagerCompat>
 </LinearLayout>

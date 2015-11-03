@@ -1,4 +1,4 @@
-package com.xiye.util;
+package com.xiye.imageloader;
 
 import java.io.File;
 import java.security.MessageDigest;

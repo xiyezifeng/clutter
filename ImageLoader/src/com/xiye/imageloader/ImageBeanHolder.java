@@ -1,4 +1,4 @@
-package com.xiye.util;
+package com.xiye.imageloader;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;

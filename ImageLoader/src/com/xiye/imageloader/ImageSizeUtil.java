@@ -1,4 +1,4 @@
-package com.xiye.util;
+package com.xiye.imageloader;
 
 import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory.Options;
