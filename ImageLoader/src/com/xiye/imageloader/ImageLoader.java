@@ -76,16 +76,15 @@ public class ImageLoader {
 	private boolean openLocalCache = true;
 	private final String TAG = "xiye";
 	
+	public void setUiHandler(Handler handler){
+		uihandler = handler;
+	}
+	
 	private static ImageLoader getInstense(){
-		if(null == loader){
-			synchronized (ImageLoader.class) {
-				if(null == loader){
-//					loader = new ImageLoader();
-				}
-			}
-		}
 		return loader;
 	}
+	
+	
 	
 	private static ImageLoader getInstense(int treadCount,LoadType t){
 		if(null == loader){
@@ -252,8 +251,6 @@ public class ImageLoader {
 		meg.obj = holder;
 		uihandler.sendMessage(meg);
 	}
-	
-	
 	/**
 	 * 加入到缓存中
 	 * 需先判断是否不存在于缓存文件中。
@@ -367,7 +364,7 @@ public class ImageLoader {
 		//加入tag保证，图片不错位
 		imageView.setTag(md5(path));
 		if(null == uihandler){
-			 uihandler = new Handler(){
+			uihandler = new Handler(){
 				@Override
 				public void handleMessage(Message msg) {
 					ImageBeanHolder beanHolder = (ImageBeanHolder) msg.obj;
@@ -377,8 +374,8 @@ public class ImageLoader {
 					if(path.equals(imageView.getTag())){
 						imageView.setImageBitmap(bitmap);
 					}
-				} 
-			 };
+				}
+			};
 		}
 		Bitmap bitmap = getBitMapToLruCache(path);
 		if(null != bitmap){

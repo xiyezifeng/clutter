@@ -1,7 +1,10 @@
 package com.xiye.main;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,7 +31,7 @@ public class DemoFragment extends Fragment{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		imageLoader = ImageLoader.getLoader(3, LoadType.LIFO);
+		imageLoader = ImageLoader.getLoader();
 		super.onCreate(savedInstanceState);
 	}
 	

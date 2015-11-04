@@ -17,47 +17,51 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.xiye.htmlparser.BaiDuTupianParser;
 import com.xiye.htmlparser.ImageBaiDuBeanHolder;
+import com.xiye.htmlparser.BaiDuTupianParser.callback;
 import com.xiye.imageloader.ImageLoader;
-import com.xiye.imageloader.LoadType;
 import com.xiye.imageloader.R;
 
-public class BaiDuTuPianFragment extends Fragment{
+public class BaiDuTuPianFragment extends Fragment implements callback{
 	
 	private View rootView;
 	private ImageLoader imageLoader;
 	private GridView gridView;
-	private List<String> images = new ArrayList<String>(); 
+	//images 需要static 不然每次进入都得初始化
+	private static List<String> images = new ArrayList<String>();
 	private MyAdapter adapter;
 	private BaiDuTupianParser parser;
+	private TextView baiduhint;
 	
+	
+	/**
+	 * 图片解析出来的回调
+	 */
 	private Handler tupianhandler = new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
 			//接收来自 parser的 消息，为图片的url,然后刷新UI
-			String url = (String) msg.obj;
-			if(url != null){
-				images.add(url);
-			}
-			//收到消息认为是有图片刷新了，可以去掉正在加载的标示
+			baiduhint.setVisibility(View.GONE);
 			adapter.notifyDataSetChanged();
-			
 		}
 	};
+	
+	@Override
+	public void callbackmesg(String image) {
+		if(images != null){
+			images.add(image);
+		}
+		tupianhandler.sendEmptyMessage(0X10);
+	}
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		//imageloader初始化
-		imageLoader = ImageLoader.getLoader(2, LoadType.LIFO);
-		//baidu 图片解析 初始化
-		try {
-			parser = BaiDuTupianParser.getInstense("http://image.baidu.com/search/index?tn=baiduimage&ps=1&ct=201326592&lm=-1&cl=2&nc=1&ie=utf-8&word=宠物", tupianhandler);
-		} catch (ParserException e) {
-			Log.i("xiye", "解析出错，解析失败");
-		}
+		imageLoader = ImageLoader.getLoader();
 		super.onCreate(savedInstanceState);
 	}
 	
@@ -67,10 +71,34 @@ public class BaiDuTuPianFragment extends Fragment{
 		// TODO Auto-generated method stub
 		rootView = inflater.inflate(R.layout.fragment_baidutupian, container , false);
 		gridView = (GridView) rootView.findViewById(R.id.baidu_gv);
+		baiduhint = (TextView) rootView.findViewById(R.id.baiduhint);
+		//baidu 图片解析 初始化
+		try {
+			parser = BaiDuTupianParser.getInstense("http://www.douban.com/photos/album/129889623/",this);
+		} catch (ParserException e) {
+			Log.i("xiye", "解析出错，解析失败");
+		}
 		setAdapter();
 		return rootView; 
 	}
 	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+	}
+
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		if(null != images && !images.isEmpty()){
+			baiduhint.setVisibility(View.GONE);
+		}else{
+			baiduhint.setVisibility(View.VISIBLE);
+		}
+		super.onStart();
+	}
+
 	private void setAdapter(){
 		if(getActivity() == null || gridView == null){
 			return;
@@ -109,5 +137,7 @@ public class BaiDuTuPianFragment extends Fragment{
 		}
 		
 	}
+
+	
 
 }

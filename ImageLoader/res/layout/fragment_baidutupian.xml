@@ -10,13 +10,14 @@
         android:layout_height="100dp"
         android:text="正在观测中，请稍等......"
         android:gravity="center"
+        android:id="@+id/baiduhint"
         />
 
     <GridView
         android:id="@+id/baidu_gv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="1"
+        android:numColumns="3"
         android:horizontalSpacing="3dp"
         android:verticalSpacing="3dp" >
     </GridView>
