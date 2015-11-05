@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
@@ -37,7 +39,16 @@ public class MainActivity extends Activity {
 		for (int imgId : mImgIds) {
 			ImageView imageView = new ImageView(getApplicationContext());
 			imageView.setScaleType(ScaleType.CENTER_CROP);
-			imageView.setImageResource(imgId);
+
+			BitmapFactory.Options options = new BitmapFactory.Options();
+			options.inJustDecodeBounds = true;
+			BitmapFactory.decodeResource(getResources(), imgId, options);
+			ImageSize size = ImageSizeUtil.getImageViewSize(imageView);
+			int bili = ImageSizeUtil.calculateInSampleSize(options,size.width,size.height);
+
+			options.inSampleSize = bili;
+			options.inJustDecodeBounds = false;
+			imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),imgId,options));
 			mImageViews.add(imageView);
 		}
 	}
