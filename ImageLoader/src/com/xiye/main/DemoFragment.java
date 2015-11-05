@@ -75,10 +75,15 @@ public class DemoFragment extends Fragment{
 			}else{
 				beanHolder = (ImageBeanHolder) convertView.getTag();
 			}
-			final ImageView  imageView = (ImageView) convertView.findViewById(R.id.iamge);
+			ImageView  imageView = (ImageView) convertView.findViewById(R.id.iamge);
 			beanHolder.imageView = imageView;
-			imageView.setImageResource(R.drawable.ic_launcher);
-			imageLoader.loadImage(getItem(position), imageView, true);
+			if(imageView.getVisibility() == View.VISIBLE){
+//				imageView.setImageResource(R.drawable.ic_launcher);
+				imageView.setImageBitmap(null);
+				imageLoader.loadImage(getItem(position), imageView, true);
+			}else{
+				imageView.setImageBitmap(null);
+			}
 			return convertView;
 		}
 		
