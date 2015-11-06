@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.xiye.customview.MainActivity" >
 
-    <com.xiye.imagepager.ImagePager
+    <ListView 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/viewpager"
-        />
-
+        android:id="@+id/demolistview"
+        ></ListView>
+    
 </RelativeLayout>
