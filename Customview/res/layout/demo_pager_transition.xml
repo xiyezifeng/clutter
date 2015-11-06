@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xiye.customview.MainActivity" >
+    tools:context="com.xiye.main.MainActivity" >
 
-    <com.xiye.imagepager.ImagePager
+    <com.xiye.view.ImagePager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/viewpager"
