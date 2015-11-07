@@ -4,11 +4,14 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.Paint.Style;
 import android.graphics.Shader.TileMode;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -44,6 +47,32 @@ public class MyCircleImageView extends ImageView{
 	 */
 	private Matrix matrix = new Matrix();
 	
+	/**
+	 * 边框矩阵
+	 */
+	private RectF borderRect = new RectF();
+	
+	
+	/**
+	 * 边框半径，比bitmap的半径长 borderWidth
+	 */
+	private static float borderRadius;
+	
+	/**
+	 * 边框半径
+	 */
+	private int borderWidth = 2;
+	
+	/**
+	 * border颜色
+	 */
+	private int borderColor = Color.RED;
+	
+	/**
+	 * border 画笔
+	 */
+	private static Paint borderPaint = new Paint();
+	
 	@Override
 	protected void onDraw(Canvas canvas) {
 		if(getDrawable() == null){
@@ -51,6 +80,7 @@ public class MyCircleImageView extends ImageView{
 		}
 		//画出圆形图片 cx,cy 圆心 , radius半径 ,paint 画笔
 		canvas.drawCircle(getWidth()/2 , getHeight()/2, drawableRadius, bitmapPaint);
+		canvas.drawCircle(getWidth()/2,  getHeight()/2,borderRadius, borderPaint);
 	}
 	
 	
@@ -76,11 +106,19 @@ public class MyCircleImageView extends ImageView{
 		bitmapPaint.setShader(bitmapShader);
 		//反锯齿
 		bitmapPaint.setAntiAlias(true);
-		//大小为当前控件的大小
-		drawableRect.set(0, 0, getWidth(), getHeight());	
+		
+		borderPaint.setAntiAlias(true);
+		borderPaint.setStyle(Style.STROKE);
+		borderPaint.setColor(borderColor);
+		borderPaint.setStrokeWidth(borderWidth);
+		
+		//大小为当前图片布局的大小
+		borderRect.set(0, 0, getWidth()-borderWidth, getHeight()-borderWidth);
+		borderRadius = Math.min(borderRect.width()/2.0f, borderRect.height()/2.0f);
+		drawableRect.set(borderRect);	
 		//计算半径
 //		drawableRadius = (drawableRect.width()>drawableRect.height())?getHeight()/2:getWidth()/2;
-		drawableRadius = Math.min(getWidth()/2.0f, getHeight()/2.0f);
+		drawableRadius = Math.min((drawableRect.width())/2.0f, (drawableRect.height())/2.0f);
 		updateMatrix();
 		//刷新
 		invalidate();
