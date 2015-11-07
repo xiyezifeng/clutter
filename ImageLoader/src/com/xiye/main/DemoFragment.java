@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.xiye.custom.MyCircleImageView;
 import com.xiye.imageloader.ImageBeanHolder;
 import com.xiye.imageloader.ImageLoader;
 import com.xiye.imageloader.Images;

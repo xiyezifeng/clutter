@@ -56,7 +56,7 @@ public class Downloader {
 		return false;
 	}
 	
-	public static Bitmap downBitMapFromUrl(String path,ImageView imageview){
+	public static Bitmap downBitMapFromUrl(String path,ImageView ImageView){
 		Bitmap bitmap = null;
 		URL url;
 		HttpURLConnection urlConn = null;
@@ -71,7 +71,7 @@ public class Downloader {
 			options.inJustDecodeBounds = true;
 			BitmapFactory.decodeStream(in, null, options);
 			
-			ImageSize size = ImageSizeUtil.getImageViewSize(imageview);
+			ImageSize size = ImageSizeUtil.getImageViewSize(ImageView);
 			int samplesize = ImageSizeUtil.calculateInSampleSize(options, size.width, size.height);
 			options.inSampleSize = samplesize;
 			options.inJustDecodeBounds = false;

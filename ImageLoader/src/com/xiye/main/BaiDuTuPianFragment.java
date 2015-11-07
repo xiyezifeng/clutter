@@ -20,8 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xiye.htmlparser.BaiDuTupianParser;
-import com.xiye.htmlparser.ImageBaiDuBeanHolder;
 import com.xiye.htmlparser.BaiDuTupianParser.callback;
+import com.xiye.htmlparser.ImageBaiDuBeanHolder;
 import com.xiye.imageloader.ImageLoader;
 import com.xiye.imageloader.R;
 
