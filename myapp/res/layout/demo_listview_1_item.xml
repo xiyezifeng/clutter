@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+     >
+    
+    <com.xiye.customview.CircleView 
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher"
+        android:padding="10dp"
+        android:id="@+id/demo_listview_1_head"
+        >
+        
+    </com.xiye.customview.CircleView>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/demo_listview_1_head"
+        android:layout_marginLeft="30dp"
+        android:text="cookie.li_1"
+        android:textSize="23sp"
+        android:id="@+id/demo_listview_1_name"
+        />
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/demo_listview_1_name"
+        android:layout_toRightOf="@id/demo_listview_1_head"
+        android:layout_marginLeft="30dp"
+        android:text="简介1"
+        android:textSize="23sp"
+        android:id="@+id/demo_listview_1_intro"
+        />
+    
+
+</RelativeLayout>
