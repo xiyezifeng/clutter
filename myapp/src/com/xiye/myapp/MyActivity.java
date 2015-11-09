@@ -35,10 +35,12 @@ public class MyActivity extends Activity {
     }
     
     private void initData(){
-    	for (int i = 0; i < Resource.images.length; i++) {
-			model_1.add(new Demo_1_Model(Resource.images[i],
-					Resource.names[i],
-					Resource.infos[i]));
+    	for (int j = 0; j < 100; j++) {
+    		for (int i = 0; i < Resource.images.length; i++) {
+    			model_1.add(new Demo_1_Model(Resource.images[i],
+    					Resource.names[i],
+    					Resource.infos[i]));
+    		}
 		}
     }
 }

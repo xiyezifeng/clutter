@@ -85,12 +85,10 @@ public class CircleView extends ImageView{
 	
 	private void setup(){
 		if(null == bitmap){
-			System.out.println("圆形控件  : " + "无bitmap");
 			return;
 		}
 	
 		if(getWidth() == 0 || getHeight() == 0){
-			System.out.println("圆形控件  : " + "控件无尺寸");
 			return;
 		}
 		drawShader = new BitmapShader(bitmap, TileMode.CLAMP, TileMode.CLAMP);
@@ -119,9 +117,6 @@ public class CircleView extends ImageView{
 			scale = (getHeight() /bitmapH)*1.0f;
 			dx = 0.5f*(getWidth() - bitmapW*scale);
 		}
-		System.out.println("缩放比例为 :  "  +  scale);
-		System.out.println("控件宽 :"+getWidth() +"," +"控件高 :" + getHeight());
-		System.out.println("图形宽 :"+bitmapW +"," +"图形高 :" + bitmapH);
 		matrix.setScale(scale, scale);
 		matrix.postTranslate(dx, dy);
 		drawShader.setLocalMatrix(matrix);

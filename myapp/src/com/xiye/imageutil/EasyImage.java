@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 
 import com.xiye.customview.CircleView;
 import com.xiye.model.Demo_1_Model;
@@ -44,6 +45,7 @@ public class EasyImage {
 				return value.getRowBytes()*value.getHeight();
 			}
 		};
+		semaphore = new  Semaphore(corePoolSize);
 		
 	}
 	
@@ -61,6 +63,8 @@ public class EasyImage {
 	
 	private Handler uihandler;
 	
+	private Semaphore semaphore ;
+	
 	
 	/**
 	 * 开启线程轮训
@@ -74,6 +78,11 @@ public class EasyImage {
 					@Override
 					public void handleMessage(Message msg) {
 						threadpoll.execute(getTask());
+						try {
+							semaphore.release();
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
 					}
 				};
 				Looper.loop();
@@ -100,7 +109,11 @@ public class EasyImage {
 	private void addTask(String path,CircleView imageview){
 		
 		task.add(buildTask(path,imageview));
-		
+		try {
+			semaphore.acquire();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		pollHandler.sendEmptyMessage(0x10);
 	}
 	
@@ -119,25 +132,25 @@ public class EasyImage {
 			@Override
 			public void run() {
 				//都是从网上下载的所以不需要判断来源
-				System.out.println("下载路径 ："+path+" ");
+//				System.out.println("下载路径 ："+path+" ");
 				//判断文件缓存
 				File cacheFile = getCacheFromPath(MD5.md5(path),imageview);
 				Bitmap bm = null;
 				if(cacheFile.exists()){
 					bm = getBitmapFromCacheFile(cacheFile.getAbsolutePath(),imageview);
-					System.out.println("存在文件 ："+cacheFile.getAbsolutePath()+" ");
+//					System.out.println("存在文件 ："+cacheFile.getAbsolutePath()+" ");
 				}else{
 					//下载
 					boolean isOk = ImageDownloadUtil.downloadImage(path,cacheFile.getAbsolutePath());
 					if(isOk){
 						bm = getBitmapFromCacheFile(cacheFile.getAbsolutePath(),imageview);
-						System.out.println("下载成功 ："+cacheFile.getAbsolutePath()+" ");
+//						System.out.println("下载成功 ："+cacheFile.getAbsolutePath()+" ");
 					}else{
-						System.out.println("下载失败");
+//						System.out.println("下载失败");
 					}
 				}
 				if(null == bm){
-					System.out.println("easyimage bitmap为空");
+//					System.out.println("easyimage bitmap为空");
 				}
 				addBitmapToLrucache(MD5.md5(path), bm);
 				refreshImage(path, bm, imageview);
@@ -156,7 +169,7 @@ public class EasyImage {
 					Bitmap bitmap = model.getBm();
 					CircleView view = model.getImageview();
 					if(MD5.md5(path).equals(view.getTag())){
-						System.out.println("刷新UI ："+path+" ");
+//						System.out.println("刷新UI ："+path+" ");
 						view.setImageBitmap(bitmap);
 					}
 				}
@@ -177,7 +190,7 @@ public class EasyImage {
 	
 	private Bitmap getBitmapFromCacheFile(String path,CircleView view){
 		ImageSize size = ImageSizeUtil.getImageSize(view);
-		System.out.println("view 尺寸  size : 高" + size.sizeH +", 宽"+ size.sizeW);
+//		System.out.println("view 尺寸  size : 高" + size.sizeH +", 宽"+ size.sizeW);
 		
 		Bitmap bitmap = null;
 		Options options = new BitmapFactory.Options();

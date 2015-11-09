@@ -60,9 +60,12 @@ public class Demo_1_Adapter extends BaseAdapter{
 			holder = (BeanHolder) convertView.getTag();
 		}
 		//加载图片至view中，需要前去下载
+		if(holder.headView.getVisibility() == View.VISIBLE){
+			easyImage.loadImage(model.image, holder.headView);
+		}else
+			holder.headView.setImageBitmap(null);
 		holder.name.setText(model.name);
 		holder.info.setText(model.info);
-		easyImage.loadImage(model.image, holder.headView);
 		return convertView;
 	}
 

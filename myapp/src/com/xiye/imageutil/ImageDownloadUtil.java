@@ -15,7 +15,7 @@ public class ImageDownloadUtil {
 		HttpURLConnection connection = null;
 		InputStream in = null;
 		FileOutputStream out = null;
-		System.out.println("文件下载 : 路径  : " + path + ","  +"存放路径  : " + filePath);
+//		System.out.println("文件下载 : 路径  : " + path + ","  +"存放路径  : " + filePath);
 		try {
 			url = new URL(path);
 			connection = (HttpURLConnection) url.openConnection();
@@ -28,7 +28,7 @@ public class ImageDownloadUtil {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("文件下载错误");
+//			System.out.println("文件下载错误");
 		}finally{
 			try {
 				connection.disconnect();
