@@ -1,11 +1,17 @@
 package com.xiye.customview;
 
+import com.xiye.imageutil.ImageSize;
+import com.xiye.imageutil.ImageSizeUtil;
+
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.Shader.TileMode;
@@ -72,15 +78,40 @@ public class CircleView extends ImageView{
 	
 	@Override
 	public void setImageBitmap(Bitmap bm) {
-		// TODO Auto-generated method stub
+		this.bitmap = null;
 		this.bitmap = bm;
 		setup();
+		super.setImageBitmap(bm);
 	}
 	
 	@Override
 	public void setImageDrawable(Drawable drawable) {
-		// TODO Auto-generated method stub
+		
+//		System.out.println("DrawableתBitmap");
+		/*int w = drawable.getIntrinsicWidth();
+	    int h = drawable.getIntrinsicHeight();
+		Bitmap.Config config = 
+		 drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+		 : Bitmap.Config.RGB_565;
+		this.bitmap = Bitmap.createBitmap(w,h,config);*/
+//		setup();
+		
 		super.setImageDrawable(drawable);
+	}
+	
+	@Override
+	public void setImageResource(int resId) {
+		Options option = new BitmapFactory.Options();
+		option.inJustDecodeBounds = true;
+		BitmapFactory.decodeResource(getResources(),resId);
+		ImageSize size = new ImageSize();
+		size.sizeH = getHeight();
+		size.sizeW = getWidth();
+		option.inSampleSize = ImageSizeUtil.getinSampleSize(option, size);
+		option.inJustDecodeBounds = false;
+		this.bitmap = BitmapFactory.decodeResource(getResources(),resId,option);
+		setup();
+		super.setImageResource(resId);
 	}
 	
 	private void setup(){

@@ -9,6 +9,7 @@ import com.xiye.model.Demo_1_Model;
 import com.xiye.myapp.R;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,6 @@ public class Demo_1_Adapter extends BaseAdapter{
 
 	@Override
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
 		return model_1.get(position);
 	}
 
@@ -48,7 +48,7 @@ public class Demo_1_Adapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final BeanHolder holder;
-		Demo_1_Model model = model_1.get(position);
+		Demo_1_Model model = (Demo_1_Model) getItem(position);
 		if(null == convertView){
 			holder = new BeanHolder();
 			convertView = LayoutInflater.from(context).inflate(R.layout.demo_listview_1_item	, null);
@@ -61,9 +61,12 @@ public class Demo_1_Adapter extends BaseAdapter{
 		}
 		//加载图片至view中，需要前去下载
 		if(holder.headView.getVisibility() == View.VISIBLE){
+			
+			holder.headView.setImageBitmap(null);
 			easyImage.loadImage(model.image, holder.headView);
 		}else
 			holder.headView.setImageBitmap(null);
+		
 		holder.name.setText(model.name);
 		holder.info.setText(model.info);
 		return convertView;

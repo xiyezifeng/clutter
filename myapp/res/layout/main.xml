@@ -5,21 +5,25 @@
               android:layout_height="fill_parent"
         >
     
-    <com.xiye.customview.SlideingLinearlayout 
+    <!-- <com.xiye.customview.SlideingLinearlayout 
 		android:layout_width="match_parent"        
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-        >
-	        
-        <ListView 
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/demo_listview_1"
-            >
-            
-        </ListView>
-        
-    </com.xiye.customview.SlideingLinearlayout>
+        > -->
+	    <!-- <com.xiye.customview.CustomScrollView 
+	        android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/demo_scrollview_1"
+	        > -->
+	        <com.xiye.customview.CustomListview 
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:id="@+id/demo_listview_1"
+	            >
+	            
+	        </com.xiye.customview.CustomListview >
+       <!--  </com.xiye.customview.CustomScrollView > -->
+    <!-- </com.xiye.customview.SlideingLinearlayout> -->
     
 </LinearLayout>
 

@@ -5,14 +5,22 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
 /**
- * 下拉刷新，以后完成
  * @author xiye
  *
  */
-public class SlideingLinearlayout extends LinearLayout{
+public class SlideingLinearlayout extends LinearLayout {
+	
+	private CustomScrollView mScrollView;
+	
 
 	public SlideingLinearlayout(Context context, AttributeSet attrs) {
-		super(context, attrs);
+		 super(context, attrs);
+	     mScrollView = new CustomScrollView(context);
+		 LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(     
+                 LinearLayout.LayoutParams.MATCH_PARENT,     
+                 LinearLayout.LayoutParams.MATCH_PARENT     
+         );   
+		 this.addView(mScrollView);
 	}
-
+	
 }
