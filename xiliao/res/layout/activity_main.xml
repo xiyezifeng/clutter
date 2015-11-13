@@ -6,19 +6,19 @@
     android:orientation="vertical" 
     android:gravity="center">
 
-    <Button
-        android:id="@+id/connection"
+   <Button
+        android:id="@+id/subconversationlist"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="连接融云"
+        android:text="群组列表"
         android:textSize="30sp" />
 
-    <Button
+    <!-- <Button
         android:id="@+id/conversation"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="会话页"
-        android:textSize="30sp" />
+        android:textSize="30sp" /> -->
 
     <Button
         android:id="@+id/conversation_list"

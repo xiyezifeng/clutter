@@ -5,6 +5,7 @@
     android:orientation="vertical" >
     
     <fragment 
+        android:id="@+id/conversation_list"
         android:name="io.rong.imkit.fragment.ConversationListFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
